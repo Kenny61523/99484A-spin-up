@@ -3,7 +3,7 @@
 #include "vex.h"
 #include <cmath>
 
-int auton_counter = 1;
+int auton_counter = 3;
 
 template <typename MOTOR>
 
@@ -64,35 +64,54 @@ void skill() {
 
 void bottomAuton() {
   lowerCatapult();
+  // roller
   move(30, 200, -100);
   move(-30, 200);
+  // align to a disk
   turn(30, 650);
+  // intake disk
   move(20, 350, 100);
   spinRoller(100, 500);
+  // rough angle adjustment
   move(-20, 350, 100);
   turn(-30, 200);
   task::sleep(100);
+  // precise angle adjustment
   move(-30, 200);
   turn(-30, 100);
+  // shoot disk
   catapultShoot();
-  move(-30, 1000);
+  spin(catapult);
+  // align for match load
+  move(-30, 1100);
   task::sleep(100);
   turn(30, 450);
   move(-20, 550);
   task::sleep(100);
   lowerCatapult();
+  // input match loads
   task::sleep(2000);
+  // align to a goal (2nd)
   move(30, 300);
   turn(-30, 500);
+  // shoot disk (2nd)
   catapultShoot();
-  turn(30, 300);
+  // ---------------------------------------------------------
+  // align for match loads (2nd)
+  turn(30, 400);
   move(-30, 500);
   lowerCatapult();
   spinRoller(100, 500);
+  // align to goal
   move(30, 300);
   turn(-30, 500);
-  
+  task::sleep(200);
+  // shoot disk (3rd)
   catapultShoot();
+}
+
+void winPointAuton() {
+  move(-40, 5000);
 }
 
 void sideAuton() {
@@ -107,5 +126,6 @@ void auton_ctrl() {
     case 0: skill(); break;
     case 1: bottomAuton(); break;
     case 2: sideAuton(); break;
+    case 3: winPointAuton();
   }
 }

@@ -15,7 +15,7 @@ void stopAll() {
 int main() {
   // Initializing Robot Configuration DO NOT REMOVE!
   vexcodeInit();
-  //Competition.drivercontrol(user_ctrl);
+  Competition.drivercontrol(user_ctrl);
   Competition.autonomous(auton_ctrl);
-  Competition.drivercontrol(stopAll);
+  //Competition.drivercontrol(stopAll);
 }
