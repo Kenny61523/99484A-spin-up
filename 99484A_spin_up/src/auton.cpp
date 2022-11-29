@@ -96,7 +96,6 @@ void bottomAuton() {
   turn(-30, 500);
   // shoot disk (2nd)
   catapultShoot();
-  // ---------------------------------------------------------
   // align for match loads (2nd)
   turn(30, 400);
   move(-30, 500);
@@ -110,8 +109,19 @@ void bottomAuton() {
   catapultShoot();
 }
 
-void winPointAuton() {
-  move(-40, 5000);
+void winPointSideAuton() {
+  lowerCatapult();
+  // roller
+  move(30, 200, -100);
+  move(-30, 200);
+  // move towards the center of the field
+  turn(-30, 650);
+  move(30, 1500);
+  // align to the highgoal
+  turn(30, 950);
+  move(30, 200);
+  catapultShoot();
+  spin(catapult);
 }
 
 void sideAuton() {
@@ -126,6 +136,6 @@ void auton_ctrl() {
     case 0: skill(); break;
     case 1: bottomAuton(); break;
     case 2: sideAuton(); break;
-    case 3: winPointAuton();
+    case 3: winPointSideAuton();
   }
 }
